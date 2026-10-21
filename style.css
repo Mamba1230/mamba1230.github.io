@@ -97,6 +97,7 @@ a {
     padding: 100px 5% 50px;
     gap: 50px;
     position: relative;
+    perspective: none; /* ← Принудительно убираем 3D-перспективу у родителя */
 }
 
 .hero::before {
@@ -174,7 +175,7 @@ a {
 }
 
 .hero-image {
-    flex: 1.2; /* Увеличили соотношение, чтобы картинка была больше */
+    flex: 1.2;
     max-width: 950px;
     display: flex;
     justify-content: flex-end;
@@ -183,15 +184,18 @@ a {
 .hero-image img {
     width: 100%;
     height: auto;
-    border-radius: 16px; /* Чуть меньше скругление, как у обычного окна */
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--border);
-    /* Убрали transition и transform, чтобы не было наклона */
+    border-radius: 16px;
+    /* Убрали 0 0 0 1px var(--border), теперь нет окантовки */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7); 
     transition: box-shadow 0.3s ease;
+    /* На всякий случай жестко фиксируем отсутствие трансформаций */
+    transform: none !important; 
 }
 
 .hero-image img:hover {
-    /* При наведении просто чуть усиливаем тень, но не крутим */
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--accent);
+    /* При наведении только усиливаем тень, никаких наклонов */
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9);
+    transform: none !important;
 }
 
 /* Секция фич */
